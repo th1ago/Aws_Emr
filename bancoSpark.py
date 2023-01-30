@@ -8,9 +8,10 @@ spark = SparkSession.builder \
 
 # Read from SQL Table
 df = spark.read \
-  .format("com.microsoft.sqlserver.jdbc.spark") \
-  .option("url", "jdbc:sqlserver://{SERVER_ADDR};databaseName=emp;") \
-  .option("dbtable", "employee") \
+  .format("jdbc") \
+  .option("url", "jdbc:sqlserver://localhost:3306;databaseName={cadastro}") \
+  .option("driver","com.mysql.jdbc.Driver") \
+  .option("dbtable", "cursos") \
   .option("user", "root") \
   .option("password", "") \
   .load()
