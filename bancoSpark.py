@@ -9,7 +9,7 @@ spark = SparkSession.builder \
 # Read from SQL Table
 df = spark.read \
   .format("jdbc") \
-  .option("url", "jdbc:sqlserver://localhost:3306;databaseName={cadastro}") \
+  .option("url", "jdbc:sqlserver://localhost:3306;databaseName={dbteste}") \
   .option("driver","com.mysql.jdbc.Driver") \
   .option("dbtable", "cursos") \
   .option("user", "root") \
