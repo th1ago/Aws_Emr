@@ -16,7 +16,7 @@ client = boto3.client(
 )
 
 response = client.run_job_flow (
-    Name='Meu-cluster-emr',
+    Name='10Fev-emr',
     # version
     ReleaseLabel='emr-6.3.0',
     LogUri='s3://aws-logs-5345324543-us-east-1/elasticmapreduce/',
@@ -47,7 +47,7 @@ response = client.run_job_flow (
             'Name': 'Download and Extract files on cluster',
             'ScriptBootstrapAction': {
                 # bucket S3
-                'Path': 's3://stack-app-project-1/app/extract_file.sh'
+                'Path': 's3://s3-demo-sp/app/extract_file.sh'
             }
         },
     ],
