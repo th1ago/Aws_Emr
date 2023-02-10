@@ -29,12 +29,11 @@ response = client.run_job_flow (
     Instances = 
     {
         'InstanceGroups': [
-            {
-          
+            {     
                 'Name': 'MASTER',
                 'Market': 'ON_DEMAND',
                 'InstanceRole': 'MASTER',
-                'InstanceType': 'm5.large',
+                'InstanceType': 'm5.xlarge',
                 'InstanceCount': 1,
             }
         ],
