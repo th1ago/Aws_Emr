@@ -16,7 +16,6 @@ The following parameters are additional parameters for the Spark job itself. Cha
 import json
 import boto3
 
-
 client = boto3.client('emr')
 
 def lambda_handler(event, context):
@@ -32,7 +31,11 @@ def lambda_handler(event, context):
             'KeepJobFlowAliveWhenNoSteps': False,
             'TerminationProtected': False
         },
-        Applications = [ {'Name': 'Spark'} ],
+        Applications=[
+            {'Name': 'Hadoop'},
+            {'Name': 'Hive'},
+            {'Name': 'Spark'}
+        ],
         Configurations = [
             { 'Classification': 'spark-hive-site',
               'Properties': {
@@ -40,8 +43,8 @@ def lambda_handler(event, context):
             }
         ],
         VisibleToAllUsers=True,
-        JobFlowRole = 'EMRLambda-EMREC2InstanceProfile-XXXXXXXXX',
-        ServiceRole = 'EMRLambda-EMRRole-XXXXXXXXX',
+        JobFlowRole = 'EMR_EC2_DefaultRole',
+        ServiceRole = 'EMR_DefaultRole',
         Steps = [
             {
                 'Name': 'flow-log-analysis',

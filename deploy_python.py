@@ -16,12 +16,14 @@ client = boto3.client(
 )
 
 response = client.run_job_flow (
-    Name='',
+    Name='Meu-cluster-emr',
     # version
     ReleaseLabel='emr-6.3.0',
     LogUri='s3://aws-logs-5345324543-us-east-1/elasticmapreduce/',
     Applications=[
-        {'Name': 'Spark'},
+        {'Name': 'Hadoop'},
+        {'Name': 'Hive'},
+        {'Name': 'Spark'}
     ],
     # config das maquinas ec2
     Instances = 
@@ -37,7 +39,7 @@ response = client.run_job_flow (
             }
         ],
         'TerminationProtected': False,
-        'Ec2KeyName': 'emr-key-win',
+        'Ec2KeyName': 'emr-key',
      },
 
     BootstrapActions=[
@@ -62,8 +64,8 @@ response = client.run_job_flow (
         }
     ],
     VisibleToAllUsers=True,
-    ServiceRole = 'emr_defaultRole',  
-    JobFlowRole = 'emr_ec2_defaultRole',
+    ServiceRole = 'EMR_DefaultRole',  
+    JobFlowRole = 'EMR_EC2_DefaultRole',
 )
 
 print (json.dumps(response, indent=4, sort_keys=True, default=str))
